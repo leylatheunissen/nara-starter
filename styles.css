@@ -491,12 +491,13 @@ input[type="checkbox"]:checked+.task-text {
 
 .encouragement-bubble {
     background: rgba(255, 255, 255, 0.95);
-    padding: 12px 18px;
+    padding: 10px 16px;
     border-radius: 16px;
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 500;
     color: #333;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: opacity 0.4s ease, transform 0.4s ease;
     pointer-events: none;
+    position: absolute;
     }

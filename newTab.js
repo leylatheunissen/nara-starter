@@ -619,7 +619,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function showEncouragementBubble() {
+  function showEncouragementBubble(taskItemElement) {
     const messages = [
       "Great job!",
       "You're on a roll!",
@@ -634,10 +634,13 @@ document.addEventListener("DOMContentLoaded", () => {
     bubble.className = "encouragement-bubble";
     bubble.textContent = messages[Math.floor(Math.random() * messages.length)];
   
-    // Position near one of the deer
+    // Get the task item's position
+    const rect = taskItemElement.getBoundingClientRect();
+
+    // Position to the right of the task item
     bubble.style.position = "absolute";
-    bubble.style.top = "450px";
-    bubble.style.left = "1000px";
+    bubble.style.top = `${rect.top + window.scrollY + rect.height / 2 - 10}px`;
+    bubble.style.left = `${rect.right + 12 + window.scrollX}px`;
     bubble.style.zIndex = "9999";
   
     document.body.appendChild(bubble);
@@ -704,7 +707,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const originalIndex = tasks.indexOf(task);
         tasks[originalIndex].completed = checkbox.checked;
         if (checkbox.checked) {
-          showEncouragementBubble();
+          showEncouragementBubble(taskItem);
         }
 
         if (tasks[originalIndex].completed) {
