@@ -949,4 +949,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tasksContainer.classList.remove("hidden");
   }
+
+  // Inspirational quote overlay
+  const quotes = [
+    "You are stronger than you think.",
+    "1% better every day.",
+    "Progress, not perfection.",
+    "Believe in yourself—you’re doing great.",
+    "One task at a time, one win at a time.",
+    "Be kind to yourself today.",
+    "You’re already enough.",
+    "Don’t forget to breathe.",
+    "You are capable of amazing things.",
+    "You are doing better than you think.",
+    "Don't let perfection be the enemy of good."
+  ];
+  
+  function showInspirationalQuote() {
+    const quoteEl = document.getElementById("quote-overlay");
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    quoteEl.textContent = quote;
+    quoteEl.classList.remove("hidden");
+  }
+  
+  showInspirationalQuote();
+
 });
