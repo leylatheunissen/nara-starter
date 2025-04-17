@@ -619,6 +619,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function showEncouragementBubble() {
+    const messages = [
+      "Great job!",
+      "You're on a roll!",
+      "Keep going!",
+      "You're incredible!",
+      "One step closer!",
+      "Keep it up!",
+      "I'm proud of you!",
+    ];
+  
+    const bubble = document.createElement("div");
+    bubble.className = "encouragement-bubble";
+    bubble.textContent = messages[Math.floor(Math.random() * messages.length)];
+  
+    // Position near one of the deer
+    bubble.style.position = "absolute";
+    bubble.style.top = "450px";
+    bubble.style.left = "1000px";
+    bubble.style.zIndex = "9999";
+  
+    document.body.appendChild(bubble);
+  
+    // Make the bubble pop out and go away after 3 seconds
+    setTimeout(() => {
+      bubble.style.opacity = "0";
+      bubble.style.transform = "translateY(-20px)";
+    }, 2000);
+  
+    setTimeout(() => {
+      bubble.remove();
+    }, 3000);
+  }
+
   function renderTasks(tasks, backgroundIndex, category) {
     const tasksHeader =
       document.getElementById("tasks-header") || document.createElement("div");
@@ -669,6 +703,9 @@ document.addEventListener("DOMContentLoaded", () => {
       checkbox.addEventListener("change", () => {
         const originalIndex = tasks.indexOf(task);
         tasks[originalIndex].completed = checkbox.checked;
+        if (checkbox.checked) {
+          showEncouragementBubble();
+        }
 
         if (tasks[originalIndex].completed) {
           const deleteButton = taskItem.querySelector(".delete-task");
